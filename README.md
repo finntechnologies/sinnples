@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Service Guru
 
-## Getting Started
+The Service Guru is a Next.js application that allows users in an apartment complex to recommend services to each other. Users can view a list of recommended services, add new recommendations, edit existing recommendations, and delete recommendations.
 
-First, run the development server:
+## Why
 
-```bash
-npm run dev
-# or
+The purpose of this app is to provide a centralized platform for residents in an apartment complex to share and discover recommended services. It promotes community engagement and helps residents find trusted service providers based on personal recommendations.
+
+## How to Run
+
+To run the Service Recommendation App locally, follow these steps:
+
+1. Clone the repository:
+
+```shell
+git clone git@github.com:daniloab/service-guru.git
+```
+
+2. Install dependencies:
+```shell
+cd service-guru
+yarn install 
+```
+
+3. Set up the MongoDB database:
+- Configure your MongoDB connection details in the `.env` file.
+- Make sure MongoDB is running on your local machine or update the connection URL accordingly.
+
+4. Start the development server:
+```shell
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open your browser and access the app at `http://localhost:3000`.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Contribution Rules
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Contributions to the Service Guru are welcome. To ensure a smooth collaboration, please follow these minimal contribution rules:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Fork the repository and create a new branch for your changes.
 
-## Learn More
+2. Commit your changes with clear and descriptive commit messages.
 
-To learn more about Next.js, take a look at the following resources:
+3. Write clear and concise code, following the project's code style and conventions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Include appropriate test cases for any new features or bug fixes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Document any significant changes or new features in the project's documentation.
 
-## Deploy on Vercel
+6. Submit a pull request to the main repository and provide a detailed description of your changes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+7. Be responsive to feedback and be willing to make necessary changes based on code reviews.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+8. Respect the project's code of conduct and maintain a positive and inclusive environment.
+
+## License
+
+The Service Guru is licensed under the [MIT License](LICENSE).
+
