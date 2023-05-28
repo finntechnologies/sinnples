@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-
 const ServiceList = ({ indications }) => {
-  console.log({ indications });
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Service List</h1>

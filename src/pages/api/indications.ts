@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { connectToDatabase } from "../../db/connectDatabase";
 
-const indications = [
+const indicationsMock = [
   {
     id: 1,
     personalName: "John Doe",
@@ -19,10 +20,29 @@ const indications = [
   },
 ];
 
-export default function handler(
-    _req: NextApiRequest,
-    res: NextApiResponse
-) {
-  // Get data from your database
-  res.status(200).json(indications)
-}
+const handleIndicationGetAll = async () => {
+  const { db, error } = await connectToDatabase();
+
+  if (error) {
+    console.log({ error });
+
+    return { indications: indicationsMock };
+  }
+
+  const serviceCollection = db.collection("services");
+
+  const indications = await serviceCollection.find().toArray();
+  return { indications };
+};
+
+const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { indications } = await handleIndicationGetAll();
+    res.status(200).json(indications);
+  } catch (error) {
+    console.error("Error fetching indications:", error);
+    res.status(500).json({ message: "Error fetching indications" });
+  }
+};
+
+export default handler;
