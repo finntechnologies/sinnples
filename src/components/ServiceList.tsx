@@ -1,4 +1,30 @@
-const ServiceList = ({ indications }) => {
+const ServiceList = ({ indications = [] }) => {
+  const row = (row) => {
+    return (
+      <tr key={row?.id}>
+        <td className="px-6 py-4 whitespace-nowrap">{row?.personalName}</td>
+        <td className="px-6 py-4 whitespace-nowrap">{row?.block}</td>
+        <td className="px-6 py-4 whitespace-nowrap">{row?.ap}</td>
+        <td className="px-6 py-4 whitespace-nowrap">
+          {row?.indicationCategory}
+        </td>
+        <td className="px-6 py-4 whitespace-nowrap">{row?.value}</td>
+        <td className="px-6 py-4 whitespace-nowrap">
+          <button className="text-blue-600">Edit</button>
+          <button className="text-red-600">Remove</button>
+        </td>
+      </tr>
+    );
+  };
+
+  const renderRows = () => {
+    if (indications.length === 0) {
+      return null;
+    }
+
+    return indications.map((indication) => row(indication));
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Service List</h1>
@@ -26,27 +52,7 @@ const ServiceList = ({ indications }) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {(indications || []).map((indication) => (
-            <tr key={indication?.id}>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {indication?.personalName}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {indication?.block}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{indication?.ap}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {indication?.indicationCategory}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {indication?.value}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <button className="text-blue-600">Edit</button>
-                <button className="text-red-600">Remove</button>
-              </td>
-            </tr>
-          ))}
+          {renderRows()}
         </tbody>
       </table>
     </div>

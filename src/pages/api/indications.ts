@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../db/connectDatabase";
+import Indication from "../../modules/IndicationModel";
 
 const indicationsMock = [
   {
@@ -21,23 +22,17 @@ const indicationsMock = [
 ];
 
 const handleIndicationGetAll = async () => {
-  const { db, error } = await connectToDatabase();
+  await connectToDatabase();
 
-  if (error) {
-    console.log({ error });
+  const indications = await Indication.find();
 
-    return { indications: indicationsMock };
-  }
-
-  const serviceCollection = db.collection("services");
-
-  const indications = await serviceCollection.find().toArray();
-  return { indications };
+  return { indications: [...indications, ...indicationsMock] };
 };
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { indications } = await handleIndicationGetAll();
+
     res.status(200).json(indications);
   } catch (error) {
     console.error("Error fetching indications:", error);
