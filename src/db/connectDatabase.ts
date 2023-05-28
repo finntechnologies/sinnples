@@ -7,14 +7,18 @@ export const connectToDatabase = async () => {
     return cachedClient;
   }
 
-  console.log({ "process.env.MONGODB_URI": process.env.MONGODB_URI });
+  if (!process.env.MONGODB_URI) {
+    return {
+      error: "mongodb uri not configured",
+      client: null,
+    };
+  }
+
   const client = await MongoClient.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
 
-  console.log({ client });
-
   cachedClient = client;
-  return client;
+  return { client, error: null };
 };
