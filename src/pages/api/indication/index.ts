@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../db/connectDatabase";
-import Indication from "../../modules/IndicationModel";
+import { connectToDatabase } from "../../../db/connectDatabase";
+import Indication from "../../../modules/IndicationModel";
 
-const indicationsMock = [
+export const indicationsMock = [
   {
     id: 1,
     personalName: "John Doe",
