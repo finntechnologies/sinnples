@@ -4,7 +4,7 @@ import useSwr from "swr";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Index = () => {
-  const { data: indications, error, isLoading } = useSwr("/api/indications", fetcher);
+  const { data: indications, error, isLoading } = useSwr("/api/indication", fetcher);
   
   if (error) return <div>Failed to load users</div>;
 

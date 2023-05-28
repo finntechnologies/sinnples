@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 type ServiceFormProps = {
-  serviceId: string;
+  serviceId?: string;
 };
 
 const ServiceForm = ({ serviceId }: ServiceFormProps) => {

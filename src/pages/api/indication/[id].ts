@@ -1,17 +1,16 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { people } from '../../../data'
-import type { Person, ResponseError } from '../../../interfaces'
+import { NextApiRequest, NextApiResponse } from "next";
+import { IIndication } from "../../../modules/IndicationModel";
+import { indicationsMock } from "./index";
 
 export default function indicationHandler(
-    req: NextApiRequest,
-    res: NextApiResponse<Person | ResponseError>
+  req: NextApiRequest,
+  res: NextApiResponse<IIndication>
 ) {
-    const { query } = req
-    const { id } = query
-    const indication = people.find((p) => p.id === id)
+  const { query } = req;
+  const { id } = query;
+  const indication = indicationsMock.find((i) => i.id === id);
 
-    // User with id exists
-    return indication
-        ? res.status(200).json(indication)
-        : res.status(404).json({ message: `User with id: ${id} not found.` })
+  return indication
+    ? res.status(200).json(indication)
+    : res.status(404).json({ message: `Indication with id: ${id} not found.` });
 }
