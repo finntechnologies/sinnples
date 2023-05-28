@@ -10,7 +10,6 @@ const ServiceList = ({ indications = [] }) => {
         </td>
         <td className="px-6 py-4 whitespace-nowrap">{row?.value}</td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <button className="text-blue-600">Edit</button>
           <button className="text-red-600">Remove</button>
         </td>
       </tr>
