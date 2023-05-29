@@ -11,7 +11,7 @@ const IndicationAdd = () => {
     apartment: "",
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     const { firstName, lastName, ...restBody } = formData;
@@ -43,10 +43,10 @@ const IndicationAdd = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [e.target.name]: e.target.value,
+      [e.target.value]: e.target.value,
     }));
   };
 
