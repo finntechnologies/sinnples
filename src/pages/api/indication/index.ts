@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "../../../db/connectDatabase";
-import Indication from "../../../modules/IndicationModel";
+import Indication from "../../../models/IndicationModel";
 
 const handleIndicationGetAll = async (
   req: NextApiRequest,
@@ -18,7 +18,7 @@ const handleIndicationAdd = async (
   res: NextApiResponse
 ) => {
   // @todo validate body with yup or zod
-  const body = JSON.parse(req.body);
+  const body = req.body;
   const indication = await new Indication(body).save();
 
   return res.status(200).json(indication);

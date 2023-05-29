@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Indication, { IIndication } from "../../../modules/IndicationModel";
+import Indication, { IIndication } from "../../../models/IndicationModel";
 import { connectToDatabase } from "../../../db/connectDatabase";
 
 const handleIndicationGet = async (

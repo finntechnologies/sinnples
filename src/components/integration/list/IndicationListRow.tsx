@@ -1,5 +1,7 @@
 import React from "react";
+import Image from 'next/image';
 import { IndicationType } from "../IndicationTypes";
+import toolsImg from '../../../../public/tools.png'
 
 type IndicationListRowProps = {
   indication: IndicationType;
@@ -10,9 +12,11 @@ const IndicationListRow = ({ indication }: IndicationListRowProps) => {
       <div className="select-none cursor-pointer hover:bg-blue-500 flex flex-1 items-center p-4">
         <div className="flex flex-col w-10 h-10 justify-center items-center mr-4">
           <a href="#" className="block relative">
-            <img
+            <Image
               alt="profil"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Noun_Project_tools_icon_943586_cc.svg/1024px-Noun_Project_tools_icon_943586_cc.svg.png"
+              width={40}
+              height={40}
+              src={toolsImg}
               className="mx-auto object-cover rounded-full h-10 w-10"
             />
           </a>
