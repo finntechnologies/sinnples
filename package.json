@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "dotenv": "^16.0.3",
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.1",
