@@ -6,8 +6,10 @@ export const connectToDatabase = async () => {
     return;
   }
 
+  const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/service-guru';
+
   try {
-    await mongoose.connect("mongodb://localhost/service-guru", {
+    await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
