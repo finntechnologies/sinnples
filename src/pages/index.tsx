@@ -14,6 +14,9 @@ const Index = () => {
 
   return (
     <div>
+      <div className="bg-blue-500 text-white p-4">
+        Indication Guru
+      </div>
       <ServiceList indications={indications} />
     </div>
   );
