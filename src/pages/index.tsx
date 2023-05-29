@@ -1,4 +1,4 @@
-import ServiceList from "../components/ServiceList";
+import IndicationList from "../components/integration/list/IndicationList";
 import useSwr from "swr";
 import Layout from "../components/Layout";
 
@@ -19,7 +19,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <ServiceList indications={indications} />
+      <IndicationList indications={indications} />
     </Layout>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
 
-import ServiceForm from "../../components/ServiceForm";
+import IndicationAdd from "../../components/integration/add/IndicationAdd";
 
 const AddIndex = () => {
-  return <ServiceForm />;
+  return <IndicationAdd />;
 };
 
 export default AddIndex;
