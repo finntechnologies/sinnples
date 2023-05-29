@@ -8,6 +8,8 @@ export const connectToDatabase = async () => {
 
   const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/service-guru';
 
+  console.log(MONGO_URI.slice(0, 15))
+
   try {
     await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
