@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Layout from "./Layout";
 
 type ServiceFormProps = {
   serviceId?: string;
@@ -62,78 +63,80 @@ const ServiceForm = ({ serviceId }: ServiceFormProps) => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-4">
-        {serviceId ? "Edit Service" : "New Service Indication"}
-      </h1>
-      <form onSubmit={handleSubmit} className="max-w-md">
-        <div className="mb-4">
-          <label className="block mb-2 font-medium" htmlFor="personalName">
-            Personal Name
-          </label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-            type="text"
-            id="personalName"
-            name="personalName"
-            value={formData.personalName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 font-medium" htmlFor="block">
-            Block
-          </label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-            type="text"
-            id="block"
-            name="block"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 font-medium" htmlFor="apartment">
-            Apartment
-          </label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-            type="text"
-            id="apartment"
-            name="apartment"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 font-medium" htmlFor="serviceCategory">
-            Service Category
-          </label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-            type="text"
-            id="serviceCategory"
-            name="serviceCategory"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 font-medium" htmlFor="value">
-            Value
-          </label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-            type="text"
-            id="value"
-            name="value"
-            required
-          />
-        </div>
-        <button className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
-          {serviceId ? "Update" : "Submit"}
-        </button>
-      </form>
-    </div>
+    <Layout>
+      <div className="container mx-auto">
+        <h1 className="text-2xl font-bold mb-4">
+          {serviceId ? "Edit Service" : "New Service Indication"}
+        </h1>
+        <form onSubmit={handleSubmit} className="max-w-md">
+          <div className="mb-4">
+            <label className="block mb-2 font-medium" htmlFor="personalName">
+              Personal Name
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              type="text"
+              id="personalName"
+              name="personalName"
+              value={formData.personalName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2 font-medium" htmlFor="block">
+              Block
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              type="text"
+              id="block"
+              name="block"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2 font-medium" htmlFor="apartment">
+              Apartment
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              type="text"
+              id="apartment"
+              name="apartment"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2 font-medium" htmlFor="serviceCategory">
+              Service Category
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              type="text"
+              id="serviceCategory"
+              name="serviceCategory"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2 font-medium" htmlFor="value">
+              Value
+            </label>
+            <input
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              type="text"
+              id="value"
+              name="value"
+              required
+            />
+          </div>
+          <button className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+            {serviceId ? "Update" : "Submit"}
+          </button>
+        </form>
+      </div>
+    </Layout>
   );
 };
 
