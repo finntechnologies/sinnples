@@ -1,6 +1,5 @@
-# Service Guru
-
-The Service Guru is a Next.js application that allows users in an apartment complex to recommend services to each other. Users can view a list of recommended services, add new recommendations, edit existing recommendations, and delete recommendations.
+# Sinnples
+The Sinnples is a Next.js application that allows users in an apartment complex to recommend services to each other. Users can view a list of recommended services, add new recommendations, edit existing recommendations, and delete recommendations.
 
 ## Why
 
@@ -8,17 +7,17 @@ The purpose of this app is to provide a centralized platform for residents in an
 
 ## How to Run
 
-To run the Service Recommendation App locally, follow these steps:
+To run the Sinnples App locally, follow these steps:
 
 1. Clone the repository:
 
 ```shell
-git clone git@github.com:daniloab/service-guru.git
+git clone git@github.com:daniloab/sinnples.git
 ```
 
 2. Install dependencies:
 ```shell
-cd service-guru
+cd sinnples
 yarn install 
 ```
 
@@ -35,7 +34,7 @@ yarn dev
 
 ## Contribution Rules
 
-Contributions to the Service Guru are welcome. To ensure a smooth collaboration, please follow these minimal contribution rules:
+Contributions to the Sinnples are welcome. To ensure a smooth collaboration, please follow these minimal contribution rules:
 
 1. Fork the repository and create a new branch for your changes.
 
