@@ -11,9 +11,9 @@ const Index = () => {
     isLoading,
   } = useSwr("/api/indication", fetcher);
 
-  if (error) return <div>Failed to load users</div>;
+  if (error) return <div>Falha ao carregar</div>;
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Carregando...</div>;
 
   if (!indications) return null;
 
