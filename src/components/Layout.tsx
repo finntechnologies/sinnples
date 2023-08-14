@@ -8,10 +8,10 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <div className="h-screen w-screen bg-gray-800">
       <Header />
       <Content>{children}</Content>
-    </>
+    </div>
   );
 };
 
