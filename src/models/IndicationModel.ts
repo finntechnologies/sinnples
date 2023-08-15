@@ -6,6 +6,7 @@ interface Indication {
   name: string;
   apartmentBlock: string;
   apartment: string;
+  cep: string
 }
 export type IIndication = Document & Indication;
 
@@ -23,6 +24,10 @@ const Schema = new mongoose.Schema<IIndication>(
       type: String,
       required: true,
     },
+    cep: {
+      type: String,
+      required: true,
+    }
   },
   {
     collection: "Indication",

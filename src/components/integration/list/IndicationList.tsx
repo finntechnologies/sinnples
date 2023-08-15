@@ -20,9 +20,7 @@ const IndicationList = ({ indications = [] }: IntegrationListProps) => {
   };
 
   return (
-    <div className="flex flex-col container max-w-md mt-10 mx-auto w-full items-center justify-center bg-white dark:bg-white-800 rounded-lg shadow">
       <ul className="flex flex-col divide-y w-full">{renderRows()}</ul>
-    </div>
   );
 };
 

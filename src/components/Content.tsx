@@ -5,9 +5,7 @@ type ContentProps = {
 };
 const Content = ({ children }: ContentProps) => {
   return (
-    <div className="mx-auto max-w-7xl px-4">
-      <div className="flex flex-col items-center">{children}</div>
-    </div>
+    <div className="bg-gray-800">{children}</div>
   );
 };
 
