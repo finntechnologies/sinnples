@@ -4,4 +4,5 @@ export type IndicationType = {
   apartmentBlock: string;
   apartment: string;
   cep: string;
+  _id: string
 };

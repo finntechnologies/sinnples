@@ -1,3 +1,4 @@
+import 'flowbite'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
