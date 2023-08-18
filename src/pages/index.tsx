@@ -4,7 +4,7 @@ import Dashboard from "../components/integration/list/Dashboard";
 const Index = () => { 
   return (
     <Layout>
-      <Dashboard/>
+      <Dashboard />
     </Layout>
   );
 };
