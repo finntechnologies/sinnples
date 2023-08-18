@@ -28,7 +28,10 @@ const IndicationList = ({ indications = [] }: IntegrationListProps) => {
   };
 
   return (
-    <div className="flex flex-col divide-y w-full">{renderRows()}</div>  );
+    <>
+      {renderRows()}
+    </>
+    );
 };
 
 export default IndicationList;
