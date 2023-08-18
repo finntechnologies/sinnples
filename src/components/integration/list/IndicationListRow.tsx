@@ -6,32 +6,6 @@ type IndicationListRowProps = {
 };
 const IndicationListRow = ({ indication }: IndicationListRowProps) => {
   return (
-    <table className="min-w-full divide-y divide-gray-200 flex flex-col dark:divide-gray-600">
-      <thead className="bg-gray-300 dark:bg-gray-700">
-        <tr>
-          <th scope="col" className="p-4">
-            <div className="flex items-center">
-              <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox" className="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" />
-              <label htmlFor="checkbox-all" className="sr-only">checkbox</label>
-            </div>
-          </th>
-          <th scope="col" className="px-20  py-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-            Name
-          </th>
-          <th scope="col" className="px-20 py-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-            Category
-          </th>
-          <th scope="col" className="px-20 py-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-            AP block
-          </th>
-          <th scope="col" className="px-20 py-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-            Apartment
-          </th>
-          <th scope="col" className="px-20 py-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-            Cep
-          </th>
-        </tr>
-      </thead>
       <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800 hover:bg-gray-700">
         <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
           <td className="w-4 p-4">
@@ -110,7 +84,6 @@ const IndicationListRow = ({ indication }: IndicationListRowProps) => {
           </td>
         </tr>
       </tbody>
-    </table>
   )
 };
 
