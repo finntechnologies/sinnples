@@ -1,4 +1,14 @@
-import * as Dialog from '@radix-ui/react-dialog'
+import { 
+  AlertDialog, 
+  AlertDialogTrigger, 
+  AlertDialogPortal, 
+  AlertDialogOverlay, 
+  AlertDialogContent,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction
+} 
+from '@radix-ui/react-alert-dialog'
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { z } from "zod"
@@ -64,23 +74,23 @@ const IndicationAdd = () => {
   };
 
   return (
-    <Dialog.Root open={isModalOpen} onOpenChange={setModalOpen}>
-      <Dialog.Trigger asChild>
+    <AlertDialog open={isModalOpen} onOpenChange={setModalOpen}>
+      <AlertDialogTrigger asChild>
           <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
           Nova indicação
           </button>
   
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 animate-overlay bg-gray-700 focus:outline-none" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 transform animate-content rounded-md bg-white p-6 shadow-custom-0 focus:outline-none dark:bg-gray-800 ">
-          <Dialog.Title className="m-0 text-base font-medium text-gray-800 dark:text-white ">
+      </AlertDialogTrigger>
+      <AlertDialogPortal>
+        <AlertDialogOverlay className="fixed inset-0 animate-overlay bg-gray-700 focus:outline-none" />
+        <AlertDialogContent className="fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 transform animate-content rounded-md bg-white p-6 shadow-custom-0 focus:outline-none dark:bg-gray-800 ">
+          <AlertDialogTitle className="m-0 text-base font-medium text-gray-800 dark:text-white ">
           Indicações
-          </Dialog.Title>
-          <Dialog.Description className="mx-0 my-2.5 mb-5 text-base text-gray-400">
+          </AlertDialogTitle>
+          <AlertDialogDescription className="mx-0 my-2.5 mb-5 text-base text-gray-400">
           Essas informações serão exibidas publicamente, portanto, tenha
           cuidado com o que será compartilhado.
-          </Dialog.Description>
+          </AlertDialogDescription>
           <form
             onSubmit={handleSubmit(handleInfo)}
           >
@@ -191,21 +201,21 @@ const IndicationAdd = () => {
                   type='submit'
                   className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 
-                  Save changes
+                  Salvar
                 </button> 
             </div>
-            <Dialog.Close asChild>
+            <AlertDialogAction asChild>
               <button
                 className="focus:shadow absolute right-2.5 top-2.5 inline-flex h-6 w-6 items-center justify-center rounded-full text-violet-400 hover:text-violet-500 dark:text-violet-500"
                 aria-label="Close"
               >
                 <X />
               </button>
-            </Dialog.Close>
+            </AlertDialogAction>
             </form>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </AlertDialogContent>
+      </AlertDialogPortal>
+    </AlertDialog>
   );
 };
 
