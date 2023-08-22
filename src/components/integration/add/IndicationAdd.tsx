@@ -1,9 +1,20 @@
-import React from "react";
-import Layout from "../../Layout";
+import { 
+  AlertDialog, 
+  AlertDialogTrigger, 
+  AlertDialogPortal, 
+  AlertDialogOverlay, 
+  AlertDialogContent,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction
+} 
+from '@radix-ui/react-alert-dialog'
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { z } from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
+import { X } from 'lucide-react'
 
 type InfoTableSchemaData = z.infer<typeof InfoTableSchema>
 
@@ -12,10 +23,11 @@ const InfoTableSchema = z.object({
   lastName: z.string().nonempty("Obrigatório"),
   apartmentBlock: z.string().nonempty("Obrigatório"),
   apartment: z.string().nonempty("Obrigatório"),
-  cep: z.string().min(8, "Deve conter no minimo 8 caracteres").nonempty("Obrigatório")
+  cep: z.string().min(8, "Deve conter no minimo 8 caracteres")
 })
 
 const IndicationAdd = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const {
     formState: { errors },
     register,
@@ -23,7 +35,7 @@ const IndicationAdd = () => {
   } = useForm<InfoTableSchemaData>({
     resolver: zodResolver(InfoTableSchema),
   })
-
+  
   const router = useRouter();
   const handleInfo = async (data: InfoTableSchemaData ) => {
     const { firstName, lastName, ...restBody } = data;
@@ -43,8 +55,10 @@ const IndicationAdd = () => {
 
       if (response.ok) {
         // @todo tailwind feedback
+        closeModal();
         console.log("Indication saved successfully");
         return router.push('/');
+        
       } else {
         // @todo tailwind feedback
         console.log("Error saving indication");
@@ -55,167 +69,153 @@ const IndicationAdd = () => {
     }
   };
 
-  
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
-    <Layout>
-      <div className="container mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Nova Indicação</h1>
-        <form onSubmit={handleSubmit(handleInfo)}>
-          <div className="space-y-12">
-            <div className="border-b border-gray-900/10 pb-12">
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Indicações
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Essas informações serão exibidas publicamente, portanto, tenha
-                cuidado com o que será compartilhado.
-              </p>
+    <AlertDialog open={isModalOpen} onOpenChange={setModalOpen}>
+      <AlertDialogTrigger asChild>
+          <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+          Nova indicação
+          </button>
+  
+      </AlertDialogTrigger>
+      <AlertDialogPortal>
+        <AlertDialogOverlay className="fixed inset-0 animate-overlay bg-gray-700 focus:outline-none" />
+        <AlertDialogContent className="fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 transform animate-content rounded-md bg-white p-6 shadow-custom-0 focus:outline-none dark:bg-gray-800 ">
+          <AlertDialogTitle className="m-0 text-base font-medium text-gray-800 dark:text-white ">
+          Indicações
+          </AlertDialogTitle>
+          <AlertDialogDescription className="mx-0 my-2.5 mb-5 text-base text-gray-400">
+          Essas informações serão exibidas publicamente, portanto, tenha
+          cuidado com o que será compartilhado.
+          </AlertDialogDescription>
+          <form
+            onSubmit={handleSubmit(handleInfo)}
+          >
+            <fieldset className="mb-4 flex items-center gap-5">
+              <label
+                className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
+                htmlFor="firstName"
+              >
+                Nome
+              </label>
+              <input
+                {...register('firstName')}
+                className="inline-flex h-9 w-full flex-1 items-center rounded px-2.5 py-0 text-base text-gray-500 shadow-sm-0 dark:text-gray-700"
+                id="firstName"
+                type="text"
+                required
+              />
+              {errors.firstName && (
+                <span className="text-sm text-red-600 ">
+                  {errors.firstName.message}
+                </span>
+              )}
+            </fieldset>
+            <fieldset className="mb-4 flex items-center gap-5">
+              <label
+                className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
+                htmlFor="lastName"
+              >
+                Sobrenome
+              </label>
+              <input
+                {...register('lastName')}
+                className="inline-flex h-9 w-full flex-1 items-center rounded px-2.5 py-0 text-base text-gray-500 shadow-sm-0 dark:text-gray-700"
+                id="lastName"
+                type="text"
+                required
+              />
+              {errors.lastName && (
+                <span className="text-sm text-red-600">
+                  {errors.lastName.message}
+                </span>
+              )}
+            </fieldset>
+            <fieldset className="mb-4 flex items-center gap-5">
+              <label
+                className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
+                htmlFor="apartmentBlock"
+              >
+              Bloco AP
+              </label>
+              <input
+                {...register('apartmentBlock')}
+                className="inline-flex h-9 w-full flex-1 items-center rounded px-2.5 py-0 text-base text-gray-500 shadow-sm-0 dark:text-gray-700"
+                id="apartmentBlock"
+                type="text"
+                required
+              />
+              {errors.apartmentBlock && (
+                <span className="text-sm text-red-600">
+                  {errors.apartmentBlock.message}
+                </span>
+              )}
+            </fieldset>
+            <fieldset className="mb-4 flex items-center gap-5">
+              <label
+                className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
+                htmlFor="apartment"
+              >
+                Apartamento
+              </label>
+
+              <input
+                {...register('apartment')}
+                className="inline-flex h-9 w-full flex-1  items-center rounded px-2.5 py-0 text-base text-gray-500 shadow-sm-0 dark:text-gray-700"
+                id="apartment"
+                type="text"
+                required
+              />
+              {errors.apartment && (
+                <span className="text-sm text-red-600">
+                  {errors.apartment.message}
+                </span>
+              )}
+            </fieldset>
+            <fieldset className="mb-4 flex items-center gap-5">
+              <label
+                className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
+                htmlFor="cep"
+              >
+                Cep
+              </label>
+              <input
+                {...register('cep')}
+                className="inline-flex h-9 w-full flex-1 items-center rounded px-2.5 py-0 text-base text-gray-500 shadow-sm-0 dark:text-gray-700"
+                id="cep"
+                type="text"
+                required
+              />
+              {errors.cep && (
+                <span className="text-sm text-red-600">
+                  {errors.cep.message}
+                </span>
+              )}
+            </fieldset>
+            <div className="mt-6 flex justify-end">
+            
+                <button
+                  type='submit'
+                  className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                
+                  Salvar
+                </button> 
             </div>
-
-            <div className="border-b border-gray-900/10 pb-12">
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Informações Pessoais
-              </h2>
-
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="firstName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Nome
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      {...register("firstName")}
-                      type="text"
-                      name="firstName"
-                      id="firstName"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                    {errors.firstName && (
-                      <span className="text-sm text-red-600 ">
-                      {errors.firstName.message}
-                    </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="lastName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Sobrenome
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      {...register("lastName")}
-                      type="text"
-                      name="lastName"
-                      id="lastName"
-                      autoComplete="family-name"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                    {errors.lastName && (
-                      <span className="text-sm text-red-600 ">
-                      {errors.lastName.message}
-                    </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="apartmentBlock"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Bloco do Apartamento
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      {...register("apartmentBlock")}
-                      type="text"
-                      name="apartmentBlock"
-                      id="apartmentBlock"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                    {errors.apartmentBlock && (
-                      <span className="text-sm text-red-600 ">
-                      {errors.apartmentBlock.message}
-                    </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="apartment"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Apartamento
-                  </label>
-                  <div className="mt-2">
-                    <input
-                    {...register("apartment")}
-                      type="text"
-                      name="apartment"
-                      id="apartment"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                    {errors.apartment && (
-                      <span className="text-sm text-red-600 ">
-                      {errors.apartment.message}
-                    </span>
-                    )}
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="apartment"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Cep
-                  </label>
-                  <div className="mt-2">
-                    <input
-                    {...register("cep")}
-                      type="text"
-                      name="cep"
-                      id="cep"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                    {errors.cep && (
-                      <span className="text-sm text-red-600 ">
-                      {errors.cep.message}
-                    </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button
-              type="button"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Indicar
-            </button>
-          </div>
-        </form>
-      </div>
-    </Layout>
+            <AlertDialogAction asChild>
+              <button
+                className="focus:shadow absolute right-2.5 top-2.5 inline-flex h-6 w-6 items-center justify-center rounded-full text-violet-400 hover:text-violet-500 dark:text-violet-500"
+                aria-label="Close"
+              >
+                <X />
+              </button>
+            </AlertDialogAction>
+            </form>
+        </AlertDialogContent>
+      </AlertDialogPortal>
+    </AlertDialog>
   );
 };
 

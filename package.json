@@ -11,8 +11,9 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.2.0",
+    "@radix-ui/react-dialog": "^1.0.4",
     "dotenv": "^16.0.3",
-    "flowbite": "^1.8.1",
+    "lucide-react": "^0.268.0",
     "mongodb": "^5.5.0",
     "mongoose": "^7.2.1",
     "next": "13.4.4",
