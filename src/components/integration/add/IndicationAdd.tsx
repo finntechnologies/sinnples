@@ -10,7 +10,7 @@ import {
 } 
 from '@radix-ui/react-alert-dialog'
 import { useSWRConfig } from 'swr';
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { z } from "zod"
 import { useForm } from "react-hook-form";
