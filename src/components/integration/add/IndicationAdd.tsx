@@ -9,6 +9,7 @@ import {
   AlertDialogAction
 } 
 from '@radix-ui/react-alert-dialog'
+import { useSWRConfig } from 'swr';
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { z } from "zod"
@@ -28,6 +29,7 @@ const InfoTableSchema = z.object({
 
 const IndicationAdd = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const { mutate } = useSWRConfig();
   const {
     formState: { errors },
     register,
@@ -56,6 +58,9 @@ const IndicationAdd = () => {
       if (response.ok) {
         // @todo tailwind feedback
         closeModal();
+
+        await mutate('/api/indication');
+        
         console.log("Indication saved successfully");
         return router.push('/');
         
