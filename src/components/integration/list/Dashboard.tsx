@@ -2,8 +2,10 @@ import IndicationList from './IndicationList'
 import Link from 'next/link'
 import IndicationAdd from '../add/IndicationAdd'
 import { useGet } from '../../../hooks/useGet'
+import { ChangeEvent, useState } from 'react'
 
 const Dashboard = () => {
+  const [search, setSearch] = useState('')
   const {
     data: indications,
     error,
@@ -15,6 +17,12 @@ const Dashboard = () => {
   if (isLoading) return <div>Carregando...</div>
 
   if (!indications) return null
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault()
+      setSearch(e.target.value)
+  }
+
   return (
     <div>
       <div className="block items-center justify-between border-b border-gray-200 bg-gray-800 p-4 dark:border-gray-700 dark:bg-gray-800 sm:flex">
@@ -69,16 +77,16 @@ const Dashboard = () => {
           <div className="block items-center justify-between sm:flex">
             <div className="mb-4 flex items-center sm:mb-0">
               <form className="sm:pr-3" action="#" method="GET">
-                <label htmlFor="products-search" className="sr-only">
+                <label htmlFor="indications-search" className="sr-only">
                   Search
                 </label>
                 <div className="relative mt-1 w-48 sm:w-64 xl:w-96">
                   <input
                     type="text"
-                    name="email"
-                    id="products-search"
+                    id="indications-search"
                     className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm"
-                    placeholder="Search for products"
+                    placeholder="Search for indications"
+                    onChange={handleSearchChange}
                   />
                 </div>
               </form>
@@ -140,7 +148,7 @@ const Dashboard = () => {
                     </th>
                   </tr>
                 </thead>
-                <IndicationList indications={indications} />
+                <IndicationList indications={indications} search={search} />
               </table>
             </div>
           </div>
