@@ -1,16 +1,14 @@
-import useSwr from 'swr'
 import IndicationList from './IndicationList'
 import Link from 'next/link'
 import IndicationAdd from '../add/IndicationAdd'
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+import { useGet } from '../../../hooks/useGet'
 
 const Dashboard = () => {
   const {
     data: indications,
     error,
     isLoading,
-  } = useSwr('/api/indication', fetcher)
+  } = useGet('/api/indication')
 
   if (error) return <div>Falha ao carregar</div>
 
@@ -85,6 +83,7 @@ const Dashboard = () => {
                 </div>
               </form>
             </div>
+            
             <IndicationAdd />
           </div>
         </div>

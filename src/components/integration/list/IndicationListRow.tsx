@@ -1,4 +1,5 @@
 import { IndicationType } from "../IndicationTypes";
+import IndicationAdd from "../add/IndicationAdd";
 import IndicationDelete from "../delete/IndicationDelete";
 
 type IndicationListRowProps = {
@@ -36,7 +37,7 @@ const IndicationListRow = ({ indication }: IndicationListRowProps) => {
             <p className="text-gray-500 dark:text-gray-400 truncate w-48 flex justify-center">{indication.cep}</p>
           </td>
           <td className="space-x-2 whitespace-nowrap py-4">
-            <button
+            {/* <button
               type="button"
               id="updateProductButton"
               data-drawer-target="drawer-update-product-default"
@@ -58,8 +59,8 @@ const IndicationListRow = ({ indication }: IndicationListRowProps) => {
                   clipRule="evenodd" />
               </svg>
               Update
-            </button>
-
+            </button> */}
+            <IndicationAdd isEdit indicationId={indication._id}/>
             <IndicationDelete indicationId={indication._id} />
           </td>
         </tr>
