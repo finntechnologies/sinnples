@@ -65,7 +65,7 @@ const Dashboard = () => {
                       href="#"
                       className="ml-1 text-gray-300 hover:text-purple-500 md:ml-2 "
                     >
-                      Indications
+                      Indicações
                     </Link>
                   </div>
                 </li>
