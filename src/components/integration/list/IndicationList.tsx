@@ -1,11 +1,23 @@
+import { useMemo } from "react";
 import { IndicationType } from "../IndicationTypes";
 import IndicationListRow from "./IndicationListRow";
 
 type IntegrationListProps = {
   indications: IndicationType[] | null;
+  search: string
 };
 
-const IndicationList = ({ indications = [] }: IntegrationListProps) => {
+const IndicationList = ({ indications = [], search }: IntegrationListProps) => {
+
+  const FilteredData = useMemo(() =>{
+    const searchToLowerCase = search?.toLowerCase();
+
+    return indications?.filter((indication) =>
+      indication.name.toLowerCase().includes(searchToLowerCase)
+    );
+
+  },[search, indications])
+
   const renderRows = () => {
     if (!indications || !indications.length) {
       return (
@@ -19,10 +31,7 @@ const IndicationList = ({ indications = [] }: IntegrationListProps) => {
       )
     }
 
-    return indications.map((indication) => {
-      if (!indication) {
-        return null;
-      }
+    return FilteredData?.map((indication) => {
       return <IndicationListRow key={indication._id} indication={indication} />;
     });
   };

@@ -9,13 +9,18 @@ import {
   AlertDialogAction
 } 
 from '@radix-ui/react-alert-dialog'
-import { useSWRConfig } from 'swr';
+import { mutate } from 'swr';
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { z } from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { X } from 'lucide-react'
+
+interface Indication {
+  isEdit?: boolean
+  indicationId?: string
+}
 
 type InfoTableSchemaData = z.infer<typeof InfoTableSchema>
 
@@ -27,9 +32,8 @@ const InfoTableSchema = z.object({
   cep: z.string().min(8, "Deve conter no minimo 8 caracteres")
 })
 
-const IndicationAdd = () => {
+const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const { mutate } = useSWRConfig();
   const {
     formState: { errors },
     register,
@@ -39,6 +43,42 @@ const IndicationAdd = () => {
   })
   
   const router = useRouter();
+
+  const handleEditInfo = async (data: InfoTableSchemaData) => {
+    const { firstName, lastName, ...restBody } = data;
+    const body = {
+      ...restBody,
+      name: `${firstName} ${lastName}`,
+    };
+
+    try {
+      const response = await fetch(`/api/indication/${indicationId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (response.ok) {
+        // @todo tailwind feedback
+        closeModal();
+
+        await mutate('/api/indication');
+        
+        console.log("Indication saved successfully");
+        return router.push('/');
+        
+      } else {
+        // @todo tailwind feedback
+        console.log("Error saving indication");
+      }
+    } catch (error) {
+      // @todo tailwind feedback
+      console.error("Error:", error);
+    }
+  }
+  
   const handleInfo = async (data: InfoTableSchemaData ) => {
     const { firstName, lastName, ...restBody } = data;
     const body = {
@@ -81,10 +121,30 @@ const IndicationAdd = () => {
   return (
     <AlertDialog open={isModalOpen} onOpenChange={setModalOpen}>
       <AlertDialogTrigger asChild>
-          <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-          Nova indicação
-          </button>
-  
+        {isEdit ? 
+          <button
+          type="button"
+          className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 inline-flex items-center rounded-lg px-2 py-2 text-center text-sm font-medium text-white focus:ring-4"
+        >
+          <svg
+            className="mr-2 h-4 w-4"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+            <path
+              fillRule="evenodd"
+              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Update
+        </button>
+        :      
+        <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+        Nova indicação
+        </button>}
       </AlertDialogTrigger>
       <AlertDialogPortal>
         <AlertDialogOverlay className="fixed inset-0 animate-overlay bg-gray-700 focus:outline-none" />
@@ -97,7 +157,8 @@ const IndicationAdd = () => {
           cuidado com o que será compartilhado.
           </AlertDialogDescription>
           <form
-            onSubmit={handleSubmit(handleInfo)}
+            // onSubmit={handleSubmit(handleInfo)}
+            onSubmit={isEdit ? handleSubmit(handleEditInfo) : handleSubmit(handleInfo)}
           >
             <fieldset className="mb-4 flex items-center gap-5">
               <label
