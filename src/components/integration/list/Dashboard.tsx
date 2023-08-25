@@ -3,6 +3,7 @@ import Link from 'next/link'
 import IndicationAdd from '../add/IndicationAdd'
 import { useGet } from '../../../hooks/useGet'
 import { ChangeEvent, useState } from 'react'
+import IndicationTable from './IndicationTable'
 
 const Dashboard = () => {
   const [search, setSearch] = useState('')
@@ -43,7 +44,7 @@ const Dashboard = () => {
                     >
                       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
-                    Home
+                    Início
                   </Link>
                 </li>
                 <li>
@@ -64,14 +65,14 @@ const Dashboard = () => {
                       href="#"
                       className="ml-1 text-gray-300 hover:text-purple-500 md:ml-2 "
                     >
-                      Indications
+                      Indicações
                     </Link>
                   </div>
                 </li>
               </ol>
             </nav>
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-              All indications
+              Indicações
             </h1>
           </div>
           <div className="block items-center justify-between sm:flex">
@@ -85,71 +86,24 @@ const Dashboard = () => {
                     type="text"
                     id="indications-search"
                     className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm"
-                    placeholder="Search for indications"
+                    placeholder="Procure por indicações"
                     onChange={handleSearchChange}
                   />
                 </div>
               </form>
             </div>
-            
             <IndicationAdd />
-          </div>
+          </div>       
         </div>
       </div>
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden shadow">
-              <table className="flex min-w-full flex-col divide-y divide-gray-200 dark:divide-gray-600">
-                <thead className="bg-gray-300 dark:bg-gray-700">
-                  <tr>
-                    <th scope="col" className="p-4">
-                      <div className="flex items-center">
-                        <input
-                          id="checkbox-all"
-                          aria-describedby="checkbox-1"
-                          type="checkbox"
-                          className="focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                        />
-                        <label htmlFor="checkbox-all" className="sr-only">
-                          checkbox
-                        </label>
-                      </div>
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-20  py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
-                    >
-                      Category
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
-                    >
-                      AP block
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
-                    >
-                      Apartment
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
-                    >
-                      Cep
-                    </th>
-                  </tr>
-                </thead>
-                <IndicationList indications={indications} search={search} />
-              </table>
+            <div className="overflow-hidden shadow"> 
+            <table className="flex min-w-full flex-col divide-y divide-gray-200 dark:divide-gray-600">
+             <IndicationTable indications={indications}/>
+             <IndicationList indications={indications} search={search} />
+            </table>
             </div>
           </div>
         </div>

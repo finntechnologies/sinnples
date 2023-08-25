@@ -28,7 +28,7 @@ const IndicationListRow = ({ indication }: IndicationListRowProps) => {
             <p className="text-gray-500 dark:text-gray-400 truncate w-56 flex justify-center">{indication.category}</p>
           </td>
           <td className=" text-base font-medium text-gray-900 dark:text-white">
-            <p className="text-gray-500 dark:text-gray-400 truncate w-56 flex justify-center">{indication.apartmentBlock}</p>
+            <p className="text-gray-500 dark:text-gray-400 truncate w-64 flex justify-center">{indication.apartmentBlock}</p>
           </td>
           <td className="max-w-sm  truncate py-4 text-base font-normal xl:max-w-xs">
             <p className="text-gray-500 dark:text-gray-400 truncate w-56 flex justify-center">{indication.apartment}</p>
