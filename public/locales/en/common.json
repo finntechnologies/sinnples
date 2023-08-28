@@ -1,0 +1,23 @@
+{
+    "indications" : "All indications",
+    "home": "Homez",
+    "search": "Search for indications",
+    "new": "New indication",
+    "name": "NAME",
+    "category": "CATEGORY",
+    "ap block": "AP BLOCK",
+    "apartments": "APARTMENT",
+    "update": "Update",
+    "delete": "Delete item",
+    "Something": "Get started now and indicate something!",
+    "careful": "This information will be publicly released, so please be careful what is shared.",
+    "save": "Save changes",
+    "sure": "Are you absolutely sure?",
+    "action": "This action cannot be undone. Referrals will be removed from our servers",
+    "cancel": "Cancel",
+    "delete indication": "Yes, delete indication",
+    "form-name": "Name",
+    "form-lastname": "Last name",
+    "form-apblock": "Ap block",
+    "form-ap": "Apartment"
+}

@@ -10,6 +10,7 @@ import {
 } 
 from '@radix-ui/react-alert-dialog'
 import { useGet } from '../../../hooks/useGet'
+import { useTranslation } from 'next-i18next'
 
 interface IndicationIdProps {
   indicationId: string
@@ -17,6 +18,8 @@ interface IndicationIdProps {
 
 const IndicationDelete = (id: IndicationIdProps) => {
   const { mutate } = useGet('/api/indication')
+
+  const { t } = useTranslation()
 
   const handleDelete = async () => {
     const { indicationId } = id
@@ -55,18 +58,17 @@ const IndicationDelete = (id: IndicationIdProps) => {
             clipRule="evenodd"
           />
         </svg>
-        Delete item
+        {t('delete')}
       </button>
       </AlertDialogTrigger>
       <AlertDialogPortal>
         <AlertDialogOverlay className="animate-overlay fixed inset-0 bg-gray-700 " />
         <AlertDialogContent className="animate-content shadow-custom-0 fixed left-1/2 top-1/2 max-h-[85vh] w-[90vh] max-w-md -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-white p-6 focus:outline-none dark:bg-gray-800">
           <AlertDialogTitle className="color-black m-0 text-base font-medium dark:text-white">
-            Você tem certeza absoluta?
+            {t('sure')}
           </AlertDialogTitle>
           <AlertDialogDescription className="color-black mb-5 text-sm dark:text-gray-400">
-            Essa ação não pode ser desfeita. As indicações serão removidas de
-            nossos servidores
+            {t('action')}
           </AlertDialogDescription>
           <div className="flex justify-end gap-6">
             <AlertDialogAction asChild>
@@ -79,7 +81,7 @@ const IndicationDelete = (id: IndicationIdProps) => {
                 className="focus:shadow-red-0 inline-flex h-9 items-center rounded bg-red-200 px-4 text-base font-medium text-red-500  transition-all hover:bg-red-300 focus:outline-none"
                 onClick={handleDelete}
               >
-                Sim, apagar indicação
+                {t('delete indication')}
               </button>
             </AlertDialogAction>
           </div>

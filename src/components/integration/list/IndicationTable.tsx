@@ -1,8 +1,13 @@
+import { useTranslation } from 'next-i18next'
+
 interface props {
   indications: any
 }
 
 const IndicationTable = ({ indications }: props) => {
+
+    const { t } = useTranslation('common')
+
     return (
       <thead className={`bg-gray-300 dark:bg-gray-700  ${indications.length === 0 ? 'hidden' : ''}`}>
         <tr>
@@ -23,25 +28,27 @@ const IndicationTable = ({ indications }: props) => {
             scope="col"
             className="px-20  py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
           >
-            Nome
+            {t('name')}
           </th>
           <th
             scope="col"
             className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
           >
-            Categoria
+           {t('category')}
+
           </th>
           <th
             scope="col"
             className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
           >
-            Bloco do AP
+            {t('ap block')}
           </th>
           <th
             scope="col"
             className="px-20 py-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400"
           >
-            Apartamento
+                        {t('apartament')}
+
           </th>
           <th
             scope="col"

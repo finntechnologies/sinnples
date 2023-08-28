@@ -1,0 +1,23 @@
+{
+    "indications" : "Indicações",
+    "home": "Início",
+    "search": "Procure por indicações",
+    "new": "Nova indicação",
+    "name": "NOME",
+    "category": "CATEGORIA",
+    "ap block": "BLOCO DO AP",
+    "apartment": "APARTAMENTO",
+    "update": "Editar",
+    "delete": "Apagar",
+    "something": "Comece agora e indique algo!",
+    "careful": "Essas informações serão exibidas publicamente, portanto, tenha cuidado com o que será compartilhado.",
+    "save": "Salvar",
+    "sure": "Você tem certeza absoluta?",
+    "action": "Essa ação não pode ser desfeita. As indicações serão removidas de nossos servidores",
+    "cancel": "Cancelar",
+    "delete indication": "Sim, apagar indicação",
+    "form-name": "Nome",
+    "form-lastname": "Sobrenome",
+    "form-apblock": "Bloco AP",
+    "form-ap": "Apartamento"
+}
