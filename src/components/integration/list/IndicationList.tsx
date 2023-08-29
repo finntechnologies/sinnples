@@ -10,7 +10,7 @@ type IntegrationListProps = {
 
 const IndicationList = ({ indications = [], search }: IntegrationListProps) => {
 
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   const FilteredData = useMemo(() =>{
     const searchToLowerCase = search?.toLowerCase();
@@ -27,7 +27,7 @@ const IndicationList = ({ indications = [], search }: IntegrationListProps) => {
         <div className="flex items-center justify-center rounded-2xl w-screen ">
         <div className="flex items-center justify-center mb-4 mt-10 h-60 w-96 rounded-2xl sm:border-2 sm:border-gray-600 sm:rounded-2xl">
           <h2 className="text-lg font-semibold text-gray-200">
-          {t('something')}
+          {t('Something')}
           </h2>
         </div>
       </div>

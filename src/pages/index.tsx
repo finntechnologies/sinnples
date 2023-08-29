@@ -7,7 +7,8 @@ interface LocaleProps {
 }
 
 const Index = () => { 
-    return (
+     
+  return (
     <Layout>
        <Dashboard />  
       </Layout>

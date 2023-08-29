@@ -58,17 +58,17 @@ const IndicationDelete = (id: IndicationIdProps) => {
             clipRule="evenodd"
           />
         </svg>
-        {t('delete')}
+        {t('Delete')}
       </button>
       </AlertDialogTrigger>
       <AlertDialogPortal>
         <AlertDialogOverlay className="animate-overlay fixed inset-0 bg-gray-700 " />
         <AlertDialogContent className="animate-content shadow-custom-0 fixed left-1/2 top-1/2 max-h-[85vh] w-[90vh] max-w-md -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-white p-6 focus:outline-none dark:bg-gray-800">
           <AlertDialogTitle className="color-black m-0 text-base font-medium dark:text-white">
-            {t('sure')}
+            {t('Sure')}
           </AlertDialogTitle>
           <AlertDialogDescription className="color-black mb-5 text-sm dark:text-gray-400">
-            {t('action')}
+            {t('Action')}
           </AlertDialogDescription>
           <div className="flex justify-end gap-6">
             <AlertDialogAction asChild>

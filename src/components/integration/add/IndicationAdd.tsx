@@ -142,21 +142,21 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
               clipRule="evenodd"
             />
           </svg>
-          {t('update')}
+          {t('Update')}
         </button>
         :      
         <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-        {t('new')}
+        {t('New')}
         </button>}
       </AlertDialogTrigger>
       <AlertDialogPortal>
         <AlertDialogOverlay className="fixed inset-0 animate-overlay bg-gray-700 focus:outline-none" />
         <AlertDialogContent className="fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 transform animate-content rounded-md bg-white p-6 shadow-custom-0 focus:outline-none dark:bg-gray-800 ">
           <AlertDialogTitle className="m-0 text-base font-medium text-gray-800 dark:text-white ">
-          {t('indications')}
+          {t('Indications')}
           </AlertDialogTitle>
           <AlertDialogDescription className="mx-0 my-2.5 mb-5 text-base text-gray-400">
-         {t('careful')}
+         {t('Careful')}
           </AlertDialogDescription>
           <form
             onSubmit={isEdit ? handleSubmit(handleEditInfo) : handleSubmit(handleInfo)}
@@ -166,7 +166,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="firstName"
               >
-                {t('form-name')}
+                {t('Username')}
               </label>
               <input
                 {...register('firstName')}
@@ -186,7 +186,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="lastName"
               >
-                {t('form-lastname')}
+                {t('Last Name')}
               </label>
               <input
                 {...register('lastName')}
@@ -206,7 +206,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="apartmentBlock"
               >
-              {t('form-apblock')}
+              {t('Apartment Block')}
               </label>
               <input
                 {...register('apartmentBlock')}
@@ -226,7 +226,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="apartment"
               >
-                {t('form-ap')}
+                {t('Apartment')}
               </label>
 
               <input
@@ -268,7 +268,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                   type='submit'
                   className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 
-                  {t('save')}
+                  {t('Save')}
                 </button> 
             </div>
             <AlertDialogAction asChild>
