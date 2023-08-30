@@ -1,0 +1,23 @@
+{
+    "Indications" : "All indications",
+    "Home": "Home",
+    "Search": "Search for indications",
+    "New": "New indication",
+    "Name": "NAME",
+    "Category": "CATEGORY",
+    "Ap Block": "AP BLOCK",
+    "Apartments": "APARTMENT",
+    "Update": "Update",
+    "Delete": "Delete",
+    "Something": "Start now and suggest something! 🚀",
+    "Careful": "This information will be publicly released, so please be careful what is shared.",
+    "Save": "Save changes",
+    "Sure": "Are you absolutely sure?",
+    "Action": "This action cannot be undone. Referrals will be removed from our servers",
+    "Cancel": "Cancel",
+    "Delete indication": "Yes, delete indication",
+    "Username": "Name",
+    "Last Name": "Last name",
+    "Apartment Block": "Ap block",
+    "Apartment": "Apartment"
+}

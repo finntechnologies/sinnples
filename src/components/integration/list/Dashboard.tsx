@@ -4,9 +4,13 @@ import IndicationAdd from '../add/IndicationAdd'
 import { useGet } from '../../../hooks/useGet'
 import { ChangeEvent, useState } from 'react'
 import IndicationTable from './IndicationTable'
+import { useTranslation } from 'next-i18next'
+
 
 const Dashboard = () => {
   const [search, setSearch] = useState('')
+  const { t } = useTranslation()
+
   const {
     data: indications,
     error,
@@ -44,7 +48,7 @@ const Dashboard = () => {
                     >
                       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
-                    Início
+                    {t('Home')}
                   </Link>
                 </li>
                 <li>
@@ -65,14 +69,14 @@ const Dashboard = () => {
                       href="#"
                       className="ml-1 text-gray-300 hover:text-purple-500 md:ml-2 "
                     >
-                      Indicações
+                      {t('Indications')}
                     </Link>
                   </div>
                 </li>
               </ol>
             </nav>
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-              Indicações
+              {t('Indications')}
             </h1>
           </div>
           <div className="block items-center justify-between sm:flex">
@@ -86,7 +90,7 @@ const Dashboard = () => {
                     type="text"
                     id="indications-search"
                     className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm"
-                    placeholder="Procure por indicações"
+                    placeholder={t('Search')}
                     onChange={handleSearchChange}
                   />
                 </div>

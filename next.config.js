@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const { i18n } = require("./next-i18next.config");
 module.exports = {
   reactStrictMode: true,
   typescript: {
@@ -9,4 +9,5 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  i18n
 }

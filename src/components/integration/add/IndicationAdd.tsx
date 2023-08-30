@@ -16,6 +16,7 @@ import { z } from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { X } from 'lucide-react'
+import { useTranslation } from 'next-i18next'
 
 interface Indication {
   isEdit?: boolean
@@ -33,6 +34,7 @@ const InfoTableSchema = z.object({
 })
 
 const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
+  const { t } = useTranslation()
   const [isModalOpen, setModalOpen] = useState(false);
   const {
     formState: { errors },
@@ -45,6 +47,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
   const router = useRouter();
 
   const handleEditInfo = async (data: InfoTableSchemaData) => {
+
     const { firstName, lastName, ...restBody } = data;
     const body = {
       ...restBody,
@@ -139,25 +142,23 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
               clipRule="evenodd"
             />
           </svg>
-          Update
+          {t('Update')}
         </button>
         :      
         <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-        Nova indicação
+        {t('New')}
         </button>}
       </AlertDialogTrigger>
       <AlertDialogPortal>
         <AlertDialogOverlay className="fixed inset-0 animate-overlay bg-gray-700 focus:outline-none" />
         <AlertDialogContent className="fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 transform animate-content rounded-md bg-white p-6 shadow-custom-0 focus:outline-none dark:bg-gray-800 ">
           <AlertDialogTitle className="m-0 text-base font-medium text-gray-800 dark:text-white ">
-          Indicações
+          {t('Indications')}
           </AlertDialogTitle>
           <AlertDialogDescription className="mx-0 my-2.5 mb-5 text-base text-gray-400">
-          Essas informações serão exibidas publicamente, portanto, tenha
-          cuidado com o que será compartilhado.
+         {t('Careful')}
           </AlertDialogDescription>
           <form
-            // onSubmit={handleSubmit(handleInfo)}
             onSubmit={isEdit ? handleSubmit(handleEditInfo) : handleSubmit(handleInfo)}
           >
             <fieldset className="mb-4 flex items-center gap-5">
@@ -165,7 +166,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="firstName"
               >
-                Nome
+                {t('Username')}
               </label>
               <input
                 {...register('firstName')}
@@ -185,7 +186,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="lastName"
               >
-                Sobrenome
+                {t('Last Name')}
               </label>
               <input
                 {...register('lastName')}
@@ -205,7 +206,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="apartmentBlock"
               >
-              Bloco AP
+              {t('Apartment Block')}
               </label>
               <input
                 {...register('apartmentBlock')}
@@ -225,7 +226,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                 className="w-20 text-right text-base text-violet-400 dark:text-violet-500"
                 htmlFor="apartment"
               >
-                Apartamento
+                {t('Apartment')}
               </label>
 
               <input
@@ -267,7 +268,7 @@ const IndicationAdd = ({ isEdit, indicationId }: Indication) => {
                   type='submit'
                   className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                 
-                  Salvar
+                  {t('Save')}
                 </button> 
             </div>
             <AlertDialogAction asChild>
