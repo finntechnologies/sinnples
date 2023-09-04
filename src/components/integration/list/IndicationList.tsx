@@ -1,4 +1,4 @@
-import { useMemo, useTransition } from "react";
+import { useMemo } from "react";
 import { IndicationType } from "../IndicationTypes";
 import IndicationListRow from "./IndicationListRow";
 import { useTranslation } from "next-i18next";

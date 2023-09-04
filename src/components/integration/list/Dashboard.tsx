@@ -5,6 +5,7 @@ import { useGet } from '../../../hooks/useGet'
 import { ChangeEvent, useState } from 'react'
 import IndicationTable from './IndicationTable'
 import { useTranslation } from 'next-i18next'
+import TableSkelleton from '../../skelleton/TableSkelleton'
 
 
 const Dashboard = () => {
@@ -17,9 +18,9 @@ const Dashboard = () => {
     isLoading,
   } = useGet('/api/indication')
 
-  if (error) return <div>Falha ao carregar</div>
+  if (error) return <TableSkelleton/>
 
-  if (isLoading) return <div>Carregando...</div>
+  if (isLoading) return <TableSkelleton/>
 
   if (!indications) return null
 
@@ -104,7 +105,7 @@ const Dashboard = () => {
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden shadow"> 
-            <table className="flex min-w-full flex-col divide-y divide-gray-200 dark:divide-gray-600">
+            <table className="min-w-full divide-y divide-gray-200 bg-gray-700 dark:divide-gray-600">
              <IndicationTable indications={indications}/>
              <IndicationList indications={indications} search={search} />
             </table>
