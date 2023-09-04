@@ -13,7 +13,7 @@ const IndicationListRow = ({ indication }: IndicationListRowProps) => {
             <p className="text-gray-500 dark:text-gray-400 truncate w-24">{indication.name}</p>
           </td>
           <td  className="px-16 py-3.5 text-sm font-normal">
-            <p className="text-gray-500 dark:text-gray-400 truncate w-24 ">{"indication.category"}</p>
+            <p className="text-gray-500 dark:text-gray-400 truncate w-24 ">{indication.category}</p>
           </td>
           <td  className="px-16 py-3.5 text-base font-medium text-gray-900 dark:text-white">
             <p className="text-gray-500 dark:text-gray-400 truncate w-24 ">{indication.apartmentBlock}</p>
