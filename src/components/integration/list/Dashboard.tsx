@@ -5,27 +5,23 @@ import { useGet } from '../../../hooks/useGet'
 import { ChangeEvent, useState } from 'react'
 import IndicationTable from './IndicationTable'
 import { useTranslation } from 'next-i18next'
-
+import TableSkelleton from '../skelleton/TableSkelleton'
 
 const Dashboard = () => {
   const [search, setSearch] = useState('')
   const { t } = useTranslation()
 
-  const {
-    data: indications,
-    error,
-    isLoading,
-  } = useGet('/api/indication')
+  const { data: indications, error, isLoading } = useGet('/api/indication')
 
-  if (error) return <div>Falha ao carregar</div>
+  if (error) return <TableSkelleton />
 
-  if (isLoading) return <div>Carregando...</div>
+  if (isLoading) return <TableSkelleton />
 
   if (!indications) return null
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault()
-      setSearch(e.target.value)
+    e.preventDefault()
+    setSearch(e.target.value)
   }
 
   return (
@@ -97,18 +93,28 @@ const Dashboard = () => {
               </form>
             </div>
             <IndicationAdd />
-          </div>       
+          </div>
         </div>
       </div>
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden shadow"> 
-            <table className="flex min-w-full flex-col divide-y divide-gray-200 dark:divide-gray-600">
-             <IndicationTable indications={indications}/>
-             <IndicationList indications={indications} search={search} />
-            </table>
-            </div>
+            {indications.length ? (
+              <div className="overflow-hidden shadow">
+                <table className="min-w-full divide-y divide-gray-200 bg-gray-700 dark:divide-gray-600">
+                  <IndicationTable indications={indications} />
+                  <IndicationList indications={indications} search={search} />
+                </table>
+              </div>
+            ) : (
+              <div className="flex w-screen items-center justify-center rounded-2xl ">
+                <div className="mb-4 mt-10 flex h-60 w-96 items-center justify-center rounded-2xl sm:rounded-2xl sm:border-2 sm:border-gray-600">
+                  <h2 className="text-lg font-semibold text-gray-200">
+                    {t('Something')}
+                  </h2>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

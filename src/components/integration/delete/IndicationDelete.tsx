@@ -73,7 +73,7 @@ const IndicationDelete = (id: IndicationIdProps) => {
           <div className="flex justify-end gap-6">
             <AlertDialogAction asChild>
               <button className="focus:shadow-mauve-0 inline-flex h-9 items-center rounded bg-gray-700 px-4 text-base font-medium text-gray-400 transition-all hover:bg-gray-500 focus:outline-none">
-                Cancelar
+                {t('Cancel')}
               </button>
             </AlertDialogAction>
             <AlertDialogAction asChild>
@@ -81,7 +81,7 @@ const IndicationDelete = (id: IndicationIdProps) => {
                 className="focus:shadow-red-0 inline-flex h-9 items-center rounded bg-red-200 px-4 text-base font-medium text-red-500  transition-all hover:bg-red-300 focus:outline-none"
                 onClick={handleDelete}
               >
-                {t('delete indication')}
+                {t('Delete indication')}
               </button>
             </AlertDialogAction>
           </div>
